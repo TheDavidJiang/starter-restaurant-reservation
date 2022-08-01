@@ -97,13 +97,14 @@ function ReservationIdSeat(){
 
                 <div className="row">
                 <div className="col-sm">
-                    
-                    <button type="submit" className="btn btn-primary" value="submit">Submit</button>
+                <button type="button" className="btn btn-secondary" onClick={()=> history.push("/reservations/new")}>Cancel</button>
+                
+                <button type="submit" className="btn btn-primary" value="submit">Submit</button>
                 </div>
                 
             </div>
             </form>
-            <button type="button" className="btn btn-secondary" onClick={()=> history.push("/reservations/new")}>Cancel</button>
+            
         </>
         
     )

@@ -11,6 +11,7 @@ function listByDate(date){
     
 }
 
+
 function create(res){
     return knex("reservations")
     .insert(res)
@@ -39,11 +40,21 @@ function update(reservationId, newStatus){
     .update({status: newStatus})
 }
 
+function search(mobile_number) {
+    return knex("reservations")
+      .whereRaw(
+        "translate(mobile_number, '() -', '') like ?",
+        `%${mobile_number.replace(/\D/g, "")}%`
+      )
+      .orderBy("reservation_date");
+  }
+
 module.exports = {
     list,
     listByDate,
     create,
     read,
     changeToFinished,
-    update
+    update,
+    search
 }

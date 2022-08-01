@@ -11,6 +11,8 @@ const timeFormat = /\d\d:\d\d/;
  */
 async function list(req, res) {
   const {date} = req.query
+  // console.log("backendstuff")
+  const {mobile_number} = req.query
   // // console.log("dateasdfasdf: ", date)
   // const currentDate = await service.list()
   // // console.log("currentDate:", currentDate)
@@ -18,7 +20,10 @@ async function list(req, res) {
   let data
   if (date) {
     data = await service.listByDate(date)
-  } else {
+  } else if(mobile_number){
+    data = await service.search(mobile_number)
+  }
+  else {
     data = await service.list()
   }
   res.json({data})

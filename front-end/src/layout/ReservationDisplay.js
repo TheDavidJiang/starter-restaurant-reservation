@@ -1,7 +1,8 @@
 import React from "react";
 import ReservationButtons from "./ReservationButtons";
 
-export default function ReservationDisplay({ onCancel, reservations = []}){
+//parent is Dashboard.js
+export default function ReservationDisplay({ reservations = []}){
     const rows = reservations.length ? (
         reservations.map((reservation) => {
             // const {reservation_id, first_name, last_name, mobile_number, reservation_date, reservation_time, people, status } = reservation;
@@ -20,7 +21,7 @@ export default function ReservationDisplay({ onCancel, reservations = []}){
                     <ReservationButtons 
                         status={reservation.status}
                         reservation_id={reservation.reservation_id}
-                        onCancel={onCancel}
+                        
                     />
                 </tr>
                 )
