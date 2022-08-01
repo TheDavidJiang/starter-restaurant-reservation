@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import React from "react";
+import { cancelReservation } from "../utils/api";
 
-export default function ReservationButtons({ status, reservation_id, onCancel }) {
+export default function ReservationButtons({ status, reservation_id }) {
     // function cancelHandler({
     //     target: {dataset: { reservationIdCancel }} = {}
     // }) {
+
+    const history = useHistory()
         
-    function cancelHandler(e){
+    async function cancelHandler(e){
         e.preventDefault()
         let reservationIdCancel = e.target.dataset.reservationIdCancel
         if (
@@ -16,7 +19,9 @@ export default function ReservationButtons({ status, reservation_id, onCancel })
             )
         ) {
             console.log("reservationIdCancel line 15", reservationIdCancel);
-            onCancel(reservationIdCancel);
+            // onCancel(reservationIdCancel);
+            await cancelReservation(reservationIdCancel)
+            history.go(0)
         }
     }
     

@@ -1,6 +1,6 @@
 import React from "react"
 
-function eachReservation({response, matchingReservations, setMatchingReservations}){
+function eachReservation({response }){
     console.log("hello")
     console.log("resposne", response)
     

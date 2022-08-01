@@ -11,6 +11,7 @@ function listByDate(date){
     
 }
 
+
 function create(res){
     return knex("reservations")
     .insert(res)

@@ -107,7 +107,7 @@ function Dashboard({ date }) {
               <button className="btn btn-primary" onClick={getTomorrow}>Tomorrow&nbsp;<span className="oi oi-chevron-right" /></button>
             </div>
             <div className="text-left">
-              <ReservationDisplay onCancel={onCancel} reservations={reservations} />
+              <ReservationDisplay reservations={reservations} />
               <ErrorAlert error={reservationsError} />
             </div>
           </div>
