@@ -1,6 +1,7 @@
 import React from "react";
 import ReservationButtons from "./ReservationButtons";
 
+//parent is Dashboard.js
 export default function ReservationDisplay({ onCancel, reservations = []}){
     const rows = reservations.length ? (
         reservations.map((reservation) => {

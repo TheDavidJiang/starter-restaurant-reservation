@@ -13,7 +13,7 @@
 
 body {
   overflow-x: hidden;
-  color: aliceblue;
+  /* color: aliceblue; */
   background-size: 400px;
   font-family: 'Montserrat', sans-serif;
 }

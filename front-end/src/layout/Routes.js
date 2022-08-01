@@ -9,6 +9,7 @@ import useQuery from "../utils/useQuery"
 import AddTable from "./AddTable";
 import ReservationIdSeat from "./ReservationIdSeat";
 import Search from "./Search/SearchDisplay";
+import EditDisplay from "./Edit/EditDisplay";
 
 
 /**
@@ -36,6 +37,10 @@ function Routes() {
 
       <Route path="/search">
         <Search />
+      </Route>
+
+      <Route path="/reservations/:reservation_id/edit">
+        <EditDisplay />
       </Route>
 
       <Route path="/reservations/:reservation_id/seat">

@@ -11,6 +11,7 @@ const timeFormat = /\d\d:\d\d/;
  */
 async function list(req, res) {
   const {date} = req.query
+  console.log("backendstuff")
   // // console.log("dateasdfasdf: ", date)
   // const currentDate = await service.list()
   // // console.log("currentDate:", currentDate)
