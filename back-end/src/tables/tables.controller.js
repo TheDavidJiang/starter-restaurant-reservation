@@ -7,24 +7,10 @@ async function list(req, res){
     res.json({data})
 }
 
-// async function create(req, res, next){
-//     const {data: {table_name, capacity, reservation_id} = {}} = req.body
 
-//     const newTable = {
-//         table_name,
-//         capacity,
-//         reservation_id
-//     }
-
-//     console.log("wow you made a table!")
-//     const response = await service.create(newTable)
-//     console.log("response: ", response)
-//     res.status(201).json({ data: response })
-// }
 
 async function create(req, res, next){
     const {data: {table_name, capacity, reservation_id} = {}} = req.body
-    console.log(req.body.data)
 
     const newTable = {
         table_name,
@@ -32,19 +18,12 @@ async function create(req, res, next){
         reservation_id
     }
 
-    console.log("wow you made a table!")
     const response = await service.create(newTable)
-    console.log("response: ", response)
     res.status(201).json({ data: response })
 }
 
 function validateData(req, res, next){
     const {table_name, capacity} = req.body.data
-    // console.log("reqbodydata", req.body.data)
-    // console.log("capacity:, ", capacity)
-    // console.log("parseInt capacity:, ", parseInt(capacity))
-    // console.log("isNaNparseInt capacity:, ", isNaN(parseInt(capacity)))
-
     if (table_name.length < 2){
         return next({
             status: 400,
@@ -67,26 +46,14 @@ function validateData(req, res, next){
 }
 
 async function reservationIdExists(req, res, next){
-    // console.log("asdf1")
     const reservation = await service.readReservationId(req.body.data.reservation_id)
-    // console.log("reservertioniddidid: ", req.body.data.reservation_id)
-    // console.log("reserzervation:", reservation)
     if(reservation){
-        
         return next()
     }
     next({
         status: 404,
         message: `${req.body.data.reservation_id}: reservation_id not found!`
     })
-
-    // service.read(req.params.table_id)
-    // .then((table)=>{
-    //     if(!table.reservation_id){
-    //         next({ status: 404, message: "reservation_id not found!"})
-    //     }
-    //     return next()
-    // })
 }
 
 async function validTableCapacity(req, res, next){
@@ -114,7 +81,6 @@ async function validTableCapacity(req, res, next){
 }
 
 function tableExists(req, res, next){
-
     service.read(req.params.table_id)
     .then((table)=>{
         if(table){
@@ -150,20 +116,16 @@ function read(req, res, next){
 }
 
 async function update(req, res){
-    // console.log("body data: ", req.body.data)
     const {reservation_id} = req.body.data
     const {table_id} = req.params
     await service.update(table_id, reservation_id)
     res.status(200).json({ data: reservation_id})
 }
 
-//destroy something
 async function destroy(req, res, next){
-    console.log("helloback")  // this is working
     const reservation_id = res.locals.table.reservation_id
     await service.removeReservation(req.params.table_id, reservation_id)
     res.status(200).json({ data: "deleted"})
-    // const deletedTable = await service.delete(table_id)
 }
 
 

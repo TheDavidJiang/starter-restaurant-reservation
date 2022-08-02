@@ -59,19 +59,15 @@ async function update(req, res, next){
 }
 
 async function updateReserve(req, res, next){
-  console.log("I updateed the reserve") 
   const reservation_id = req.params.reservation_id
   const updatedInfo = req.body.data
   const result = await service.read(reservation_id)
-  console.log("resultasdf", result)
-  console.log("updatedInfoasdfas", updatedInfo)
   await service.update(reservation_id, updatedInfo)
-  
   res.status(200).json({ data: updatedInfo})
 }
 
 
-//-------------------------- validation stuff
+//-------------------------- validation middleware
 function validateData(req, res, next){
   const {reservation_time, reservation_date, status} = req.body.data
   let day = new Date(`${reservation_date} ${reservation_time}`)

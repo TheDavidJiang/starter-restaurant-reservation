@@ -3,9 +3,7 @@ import React from "react";
 import { cancelReservation } from "../utils/api";
 
 export default function ReservationButtons({ status, reservation_id }) {
-    // function cancelHandler({
-    //     target: {dataset: { reservationIdCancel }} = {}
-    // }) {
+
 
     const history = useHistory()
         
@@ -18,8 +16,6 @@ export default function ReservationButtons({ status, reservation_id }) {
                 "Do you want to cancel this reservation?\n\nThis cannot be undone."
             )
         ) {
-            console.log("reservationIdCancel line 15", reservationIdCancel);
-            // onCancel(reservationIdCancel);
             await cancelReservation(reservationIdCancel)
             history.go(0)
         }

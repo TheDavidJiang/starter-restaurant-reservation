@@ -15,7 +15,6 @@ function AddTable(){
     const [errors, setErrors] = useState([])
 
     const handleChangeTable = ({target})=>{
-        console.log("target: ", target.value)
         setTableForm({
             ...tableForm,
             [target.name]: target.value
@@ -26,9 +25,7 @@ function AddTable(){
         event.preventDefault()
         const ac = new AbortController()
         try{
-            // console.log("hello")
-            const newTable = await createTables({...tableForm, capacity: Number(tableForm.capacity)}, ac.signal)
-            console.log(newTable)
+            await createTables({...tableForm, capacity: Number(tableForm.capacity)}, ac.signal)
             setTableForm(initialTableForm)
             history.push(`/dashboard`)
         }catch(e){

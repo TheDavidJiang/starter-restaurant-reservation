@@ -25,7 +25,6 @@ export default function EditDisplay(){
             const getInitialInfo = async () =>{
                 try{
                     const response = await getReservation(params.reservation_id, abortController.signal)
-                    console.log("here is resposneadxo", response)
                     setFormState({
                         first_name: response.first_name,
                         last_name: response.last_name,

@@ -34,7 +34,6 @@ function changeToFinished(reservation_id){
 }
 
 function updateStatus(reservationId, newStatus){
-    // console.log("reservationId", reservationId)
     return knex("reservations")
     .where({reservation_id: reservationId})
     .update({status: newStatus})

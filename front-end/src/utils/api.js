@@ -104,11 +104,7 @@ export async function createTables(data, signal){
 
 //function to get reservation information
 export async function getReservation(reservation_id, signal){
-  // console.log("asdf params:", params)
   const url = new URL(`${API_BASE_URL}/reservations/${reservation_id}`)
-  // Object.entries(params).forEach(([key, value]) =>
-  //   url.searchParams.append(key, value.toString())
-  // )
   return await fetchJson(url, { headers, signal }, [])
 }
 
@@ -168,21 +164,21 @@ export async function removeReservation(table_id, reservation_id, signal){
   return await fetchJson(url, options, {});
  };
 
-//function to edit/update the reservation
-// INPROGRESS, CHANGE LINE 177-178's BODY 
+
+ //funciton to make edits to a reservation
 export async function editReservation(reservationId, data, signal) {
   const url = `${API_BASE_URL}/reservations/${reservationId}/`;
   const options = {
     method: "PUT",
     body: JSON.stringify({
-      data
-    }), 
+      data }), 
     headers, 
     signal,
   };
   return await fetchJson(url, options, {});
  };
 
+ //function to change a reservation's status to finished
  export async function finishReservation(reservationId, signal) {
   const url = `${API_BASE_URL}/reservations/${reservationId}/status`;
   const options = {

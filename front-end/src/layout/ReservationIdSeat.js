@@ -8,18 +8,13 @@ function ReservationIdSeat(){
     const history = useHistory()
     const [allTables, setAllTables] = useState([])
     const [tableId, setTableId] = useState(null)
-    const [currentReservation, setCurrentReservation] = useState(null)
-
-
-
-
 
 
     useEffect(()=>{
         const getReserve = async () =>{
             try{
-                const thisReservation = await getReservation(params.reservation_id)
-                setCurrentReservation(thisReservation)
+                await getReservation(params.reservation_id)
+
             }catch(e){
                 console.log(e)
             }

@@ -57,27 +57,7 @@ function Dashboard({ date }) {
 
   return (
     <>
-      {/* <h1>Dashboard</h1> */}
-      {/* <div className="row"> */}
-        {/* <div className="col-md-6 col-lg-6 col-sm-12">
-          <div className="d-md-flex mb-3">
-            <h4 className="box-title mb-0">Reservations for {date}</h4>
-          </div>
-          <ErrorAlert error={reservationsError} />
-          <div className="btn-group" role="group" aria-label="navigation buttons">
-            <button className="btn btn-secondary" onClick={getYesterday}><span className="oi oi-chevron-left" />&nbsp;Yesterday</button>
-            <button className="btn btn-success" onClick={getToday}>Today </button>
-            <button className="btn btn-primary" onClick={getTomorrow}>Tomorrow&nbsp;<span className="oi oi-chevron-right" /></button>
-          </div>
-          <ReservationDisplay onCancel={onCancel} reservations={reservations} />
-        </div> */}
-
-        {/* <div className="col-md-6 col-lg-6 col-sm-12">
-          <ErrorAlert error={tablesError} />
-          <TableDisplay tables={tables} onFinish={onFinish} />
-        </div> */}
-      {/* </div> */}
-
+    
       <div className="padded col-lg-7 col-md-5 col-sm-12 col-xs-6 align-self-start m-3 card-main">
         <div className="text-center">
           <div>

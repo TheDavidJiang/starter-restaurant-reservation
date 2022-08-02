@@ -1,5 +1,4 @@
 import React , {useState}from "react"
-import useQuery from "../../utils/useQuery"
 import { getReservationPlusMobile } from "../../utils/api"
 import ReservationDisplay from "../ReservationDisplay"
 
@@ -25,7 +24,6 @@ export default function Search(){
     }
 
     const handleChange = (event) =>{
-        console.log(event.target.value)
         setSearchPhone(event.target.value)
     }
 
