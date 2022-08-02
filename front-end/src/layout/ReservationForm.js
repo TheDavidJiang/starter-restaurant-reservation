@@ -2,15 +2,13 @@ import React from "react"
 import { useHistory } from "react-router-dom"
 
 // parent is AddReservation.js
-function ReservationForm({handleSubmit, handleChange, reservationForm, noPastDate}){
+function ReservationForm({handleSubmit, handleChange, reservationForm}){
     const history = useHistory()
 
 
     return (
         <>
-        <h2>
-            Create a reservation
-        </h2>
+
         <form onSubmit = {handleSubmit}>
             <div className="container">
                 <div className="row">

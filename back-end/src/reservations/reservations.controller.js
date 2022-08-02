@@ -11,12 +11,7 @@ const timeFormat = /\d\d:\d\d/;
  */
 async function list(req, res) {
   const {date} = req.query
-  // console.log("backendstuff")
   const {mobile_number} = req.query
-  // // console.log("dateasdfasdf: ", date)
-  // const currentDate = await service.list()
-  // // console.log("currentDate:", currentDate)
-  // res.json({ data: currentDate.filter(date ? reserv => reserv.reservation_date == date : () => true )})
   let data
   if (date) {
     data = await service.listByDate(date)
@@ -34,10 +29,6 @@ async function read(req, res){
   res.status(200).json({ data: res.locals.reservation })
 }
 
-// async function update(req, res, next){
-//   await service.update(res.locals.reservation.reservation_id)
-//   res.status(200).json({ data: res.locals.reservation})
-// }
 
 
 async function create(req, res){
@@ -78,14 +69,22 @@ async function create(req, res){
 async function update(req, res, next){
   const reservation_id = req.params.reservation_id
   const {status} = req.body.data
-  await service.update(reservation_id, status )
+  await service.updateStatus(reservation_id, status )
   const result = await service.read(reservation_id)
 
   res.status(200).json({ data: { status: result.status} })
 }
 
-async function getReservationByPhone(req, res, next){
-  console.log("hello") 
+async function updateReserve(req, res, next){
+  console.log("I updateed the reserve") 
+  const reservation_id = req.params.reservation_id
+  const updatedInfo = req.body.data
+  const result = await service.read(reservation_id)
+  console.log("resultasdf", result)
+  console.log("updatedInfoasdfas", updatedInfo)
+  await service.update(reservation_id, updatedInfo)
+  
+  res.status(200).json({ data: updatedInfo})
 }
 
 
@@ -178,7 +177,7 @@ function reservationExists(req, res, next){
 }
 
 async function validateStatus(req, res, next){
-  console.log("hey lok at me:", req.body)
+  // console.log("hey lok at me:", req.body)
   const { status } = req.body.data
   // const response = await service.read()
   if (status !== "finished" && status !== "seated" && status !== "booked" && status !== "cancelled" ){
@@ -192,8 +191,10 @@ async function validateStatus(req, res, next){
   // } else if( status === "finished"){
   //   return next({ status: 400, message: "A finished reservation cannot be updated"})
   // }
-  next()
+  return next()
 }
+
+
 
 module.exports = {
   list: asyncErrorBoundary(list),
@@ -220,9 +221,45 @@ module.exports = {
   update: [
     reservationExists,
     // asyncErrorBoundary(update)
+    // asyncErrorBoundary(bodyHasData("first_name")),
+    // asyncErrorBoundary(bodyHasData("last_name")),
+    // asyncErrorBoundary(bodyHasData("mobile_number")),
+    // asyncErrorBoundary(bodyHasData("reservation_date")),
+    // asyncErrorBoundary(bodyHasData("reservation_time")),
+    // asyncErrorBoundary(bodyHasData("people")),
+    // peopleIsValidNumber,
+    // reservationDayIsValid,
+    // reservationTimeIsValid,
     validateStatus,
     asyncErrorBoundary(update)
   ],
-  getReservationByPhone,
+  //   update: [
+  //   reservationExists,
+  //   // asyncErrorBoundary(update)
+  //   asyncErrorBoundary(bodyHasData("first_name")),
+  //   asyncErrorBoundary(bodyHasData("last_name")),
+  //   asyncErrorBoundary(bodyHasData("mobile_number")),
+  //   asyncErrorBoundary(bodyHasData("reservation_date")),
+  //   asyncErrorBoundary(bodyHasData("reservation_time")),
+  //   asyncErrorBoundary(bodyHasData("people")),
+  //   peopleIsValidNumber,
+  //   reservationDayIsValid,
+  //   reservationTimeIsValid,
+  //   validateStatus,
+  //   asyncErrorBoundary(update)
+  // ],
+  updateReserve: [
+    reservationExists,
+    asyncErrorBoundary(bodyHasData("first_name")),
+    asyncErrorBoundary(bodyHasData("last_name")),
+    asyncErrorBoundary(bodyHasData("mobile_number")),
+    asyncErrorBoundary(bodyHasData("reservation_date")),
+    asyncErrorBoundary(bodyHasData("reservation_time")),
+    asyncErrorBoundary(bodyHasData("people")),
+    peopleIsValidNumber,
+    reservationDayIsValid,
+    reservationTimeIsValid,
+    asyncErrorBoundary(updateReserve)
+  ]
 
 };

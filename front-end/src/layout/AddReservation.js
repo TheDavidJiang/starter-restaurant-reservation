@@ -87,6 +87,9 @@ function AddReservation(){
                 </ul>
             </div>
         )}
+            <h2>
+                Create a reservation
+            </h2>
             <ReservationForm 
                 handleSubmit = {handleSubmit}
                 handleChange = {handleChange}

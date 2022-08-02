@@ -33,11 +33,25 @@ function changeToFinished(reservation_id){
     .update({status: "finished"})
 }
 
-function update(reservationId, newStatus){
+function updateStatus(reservationId, newStatus){
     // console.log("reservationId", reservationId)
     return knex("reservations")
     .where({reservation_id: reservationId})
     .update({status: newStatus})
+}
+
+function update(reservation_id, updatedInfo){
+    return knex("reservations")
+    .select("*")
+    .where({reservation_id})
+    .update({
+        first_name: updatedInfo.first_name,
+        last_name: updatedInfo.last_name,
+        mobile_number: updatedInfo.mobile_number,
+        reservation_date: updatedInfo.reservation_date,
+        reservation_time: updatedInfo.reservation_time,
+        people: updatedInfo.people,
+    })
 }
 
 function search(mobile_number) {
@@ -55,6 +69,7 @@ module.exports = {
     create,
     read,
     changeToFinished,
+    updateStatus,
     update,
     search
 }

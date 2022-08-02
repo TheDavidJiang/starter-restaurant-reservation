@@ -168,6 +168,21 @@ export async function removeReservation(table_id, reservation_id, signal){
   return await fetchJson(url, options, {});
  };
 
+//function to edit/update the reservation
+// INPROGRESS, CHANGE LINE 177-178's BODY 
+export async function editReservation(reservationId, data, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservationId}/`;
+  const options = {
+    method: "PUT",
+    body: JSON.stringify({
+      data
+    }), 
+    headers, 
+    signal,
+  };
+  return await fetchJson(url, options, {});
+ };
+
  export async function finishReservation(reservationId, signal) {
   const url = `${API_BASE_URL}/reservations/${reservationId}/status`;
   const options = {
