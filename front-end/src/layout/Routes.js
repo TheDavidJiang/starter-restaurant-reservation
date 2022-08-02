@@ -20,15 +20,9 @@ import EditDisplay from "./Edit/EditDisplay";
  * @returns {JSX.Element}
  */
 function Routes() {
-  const query = useQuery() //initialize the useQuery hook
-  // console.log(query)
+  const query = useQuery()
   const date = query.get("date")
-  // console.log("date: ", date)
-  // const limit = query.get("limit")
-  // console.log("limit: ", limit)
 
-  // const myDate = new Date("2022-07-14")
-  // console.log("my date: ", myDate.getDay() + 1)
   return (
     <Switch>
       <Route exact={true} path="/">
@@ -66,7 +60,6 @@ function Routes() {
 
 
       <Route path="/dashboard">
-        {/* <Dashboard date={date} /> */}
         <Dashboard date={date ? date : today()} />
       </Route>
       <Route>

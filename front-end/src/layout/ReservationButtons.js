@@ -3,9 +3,7 @@ import React from "react";
 import { cancelReservation } from "../utils/api";
 
 export default function ReservationButtons({ status, reservation_id }) {
-    // function cancelHandler({
-    //     target: {dataset: { reservationIdCancel }} = {}
-    // }) {
+
 
     const history = useHistory()
         
@@ -18,8 +16,6 @@ export default function ReservationButtons({ status, reservation_id }) {
                 "Do you want to cancel this reservation?\n\nThis cannot be undone."
             )
         ) {
-            console.log("reservationIdCancel line 15", reservationIdCancel);
-            // onCancel(reservationIdCancel);
             await cancelReservation(reservationIdCancel)
             history.go(0)
         }
@@ -30,7 +26,8 @@ export default function ReservationButtons({ status, reservation_id }) {
         return (
             <>
                 <td><Link className="btn btn-success" to={`/reservations/${reservation_id}/seat`}><span className="oi oi-check" />Seat</Link></td>
-                <td><Link className="btn btn-primary" to={`/reservations/${reservation_id}/edit`}><span className="oi oi-pencil" />Edit</Link></td>
+                {/* <td><Link className="btn btn-primary" to={`/reservations/${reservation_id}/edit`}><span className="oi oi-pencil" />Edit</Link></td> */}
+                <td><a className="btn btn-primary" href={`/reservations/${reservation_id}/edit`}><span className="oi oi-pencil" />Edit</a></td>
                 <td><button className="btn btn-danger mr-2 cancel" type="button" data-reservation-id-cancel={reservation_id} onClick={cancelHandler}><span className="oi oi-x" />Cancel</button></td>
             </>
         );

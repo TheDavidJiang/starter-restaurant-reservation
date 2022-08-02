@@ -11,12 +11,7 @@ const timeFormat = /\d\d:\d\d/;
  */
 async function list(req, res) {
   const {date} = req.query
-  // console.log("backendstuff")
   const {mobile_number} = req.query
-  // // console.log("dateasdfasdf: ", date)
-  // const currentDate = await service.list()
-  // // console.log("currentDate:", currentDate)
-  // res.json({ data: currentDate.filter(date ? reserv => reserv.reservation_date == date : () => true )})
   let data
   if (date) {
     data = await service.listByDate(date)
@@ -34,10 +29,6 @@ async function read(req, res){
   res.status(200).json({ data: res.locals.reservation })
 }
 
-// async function update(req, res, next){
-//   await service.update(res.locals.reservation.reservation_id)
-//   res.status(200).json({ data: res.locals.reservation})
-// }
 
 
 async function create(req, res){
@@ -52,47 +43,33 @@ async function create(req, res){
     people
   }
   const response = await service.create(newReserve)
-  // console.log("responseStat: ", response.status)
-  // if (response.status == "booked"){
-  //   res.status(201).json({ data: response })  
-  // } else if (response.status == "seated"){
-  //   res.status(400).json({ data: response })  
-  // }
-  // else {
-  //   res.status(400).json({ data: response })  
-  // }
   res.status(201).json({ data: response })
 
-  // res.json({ data: await service.create(req.body.data)})
   
 }
 
-// async function finish(req, res, next){
-//   const reservation_id = req.params.reservation_id
-//   await service.changeToFinished(reservation_id)
-//   const result = await service.read(reservation_id)
-//   // console.log("asdfasdfasdf", result)
-//   res.status(200).json({ data: { status: result.status} })
-// }
 
 async function update(req, res, next){
   const reservation_id = req.params.reservation_id
   const {status} = req.body.data
-  await service.update(reservation_id, status )
+  await service.updateStatus(reservation_id, status )
   const result = await service.read(reservation_id)
 
   res.status(200).json({ data: { status: result.status} })
 }
 
-async function getReservationByPhone(req, res, next){
-  console.log("hello") 
+async function updateReserve(req, res, next){
+  const reservation_id = req.params.reservation_id
+  const updatedInfo = req.body.data
+  const result = await service.read(reservation_id)
+  await service.update(reservation_id, updatedInfo)
+  res.status(200).json({ data: updatedInfo})
 }
 
 
-//-------------------------- validation stuff
+//-------------------------- validation middleware
 function validateData(req, res, next){
   const {reservation_time, reservation_date, status} = req.body.data
-  // let reserv_time = data["reservation_time"]
   let day = new Date(`${reservation_date} ${reservation_time}`)
   if (status === "seated" || status === "finished"){
     next({
@@ -119,7 +96,6 @@ function validateData(req, res, next){
 
 function bodyHasData(propertyName){
   return function (req, res, next){
-    // console.log("request: ", req.body)
     const { data = {} } = req.body
     data[propertyName] && propertyName.length > 0 ? next() : next({ status: 400, message: `Reservation must have: ${propertyName}.`})
   }
@@ -178,22 +154,18 @@ function reservationExists(req, res, next){
 }
 
 async function validateStatus(req, res, next){
-  console.log("hey lok at me:", req.body)
   const { status } = req.body.data
-  // const response = await service.read()
   if (status !== "finished" && status !== "seated" && status !== "booked" && status !== "cancelled" ){
     return next ({ status: 400, message: "Reservation status is unknown" })
   }
   if (res.locals.reservation.status === "finished"){
     return next({ status: 400, message: "Cannot update a finished reservation."})
   }
-  // if (status === "unknown"){
-  //   return next({ status: 400, message: "Reservation status is unknown"})
-  // } else if( status === "finished"){
-  //   return next({ status: 400, message: "A finished reservation cannot be updated"})
-  // }
-  next()
+
+  return next()
 }
+
+
 
 module.exports = {
   list: asyncErrorBoundary(list),
@@ -219,10 +191,22 @@ module.exports = {
 
   update: [
     reservationExists,
-    // asyncErrorBoundary(update)
     validateStatus,
     asyncErrorBoundary(update)
   ],
-  getReservationByPhone,
+
+  updateReserve: [
+    reservationExists,
+    asyncErrorBoundary(bodyHasData("first_name")),
+    asyncErrorBoundary(bodyHasData("last_name")),
+    asyncErrorBoundary(bodyHasData("mobile_number")),
+    asyncErrorBoundary(bodyHasData("reservation_date")),
+    asyncErrorBoundary(bodyHasData("reservation_time")),
+    asyncErrorBoundary(bodyHasData("people")),
+    peopleIsValidNumber,
+    reservationDayIsValid,
+    reservationTimeIsValid,
+    asyncErrorBoundary(updateReserve)
+  ]
 
 };
