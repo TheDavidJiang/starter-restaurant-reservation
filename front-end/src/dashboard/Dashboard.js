@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { listReservations, listTables, removeReservation, cancelReservation } from "../utils/api";
+import { listReservations, listTables, removeReservation } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import { previous, next } from "../utils/date-time";
 import ReservationDisplay from "../layout/ReservationDisplay"
@@ -27,13 +27,11 @@ function Dashboard({ date }) {
     listReservations({ date }, abortController.signal)
       .then(setReservations)
       .catch(setReservationsError);
-      console.log("reservations: ", reservations)
       
-    // listTables({ date }, abortController.signal) //do I need to destructure date here?
+    
     listTables(abortController.signal)
       .then(setTables)
       .catch(setTablesError)
-      console.log("tables: ", tables)
     return () => abortController.abort();
   }
 
@@ -55,10 +53,7 @@ function Dashboard({ date }) {
     removeReservation(table_id, reservation_id).then(loadDashboard).catch(setTablesError);
   }
 
-  function onCancel(reservation_id) {
-    const abortController = new AbortController();
-    cancelReservation(reservation_id, abortController.signal).then(loadDashboard).catch(setReservationsError)
-  };
+
 
   return (
     <>
@@ -137,25 +132,3 @@ function Dashboard({ date }) {
 }
 export default Dashboard;
 
-
-{/* <main>
-<h1>Dashboard</h1>
-<div className="d-md-flex mb-3">
-  <h4 className="mb-0">Reservations for {date}</h4>
-</div>
-
-<div>
-  <button className="btn btn-secondary" onClick={getYesterday}>Yesterday</button>
-  <button className="btn btn-success" onClick={getToday}>Today</button>
-  <button className="btn btn-primary" onClick={getTomorrow}>Tomorrow</button>
-</div>
-<ErrorAlert error={reservationsError} />
-
-<div className="p-3 mb-2 bg-light text-dark">
-  <ReservationDisplay onCancel={onCancel} reservations={reservations} />
-</div>
-
-<div className="p-3 mb-2 bg-light text-dark">
-  <TableDisplay tables={tables} onFinish={onFinish} />
-</div>
-</main> */}

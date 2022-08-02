@@ -5,7 +5,7 @@ import ReservationButtons from "./ReservationButtons";
 export default function ReservationDisplay({ reservations = []}){
     const rows = reservations.length ? (
         reservations.map((reservation) => {
-            // const {reservation_id, first_name, last_name, mobile_number, reservation_date, reservation_time, people, status } = reservation;
+            
             if (reservation.status !== "finished"){
                 return (
                     <tr key={reservation.reservation_id}>
@@ -25,6 +25,8 @@ export default function ReservationDisplay({ reservations = []}){
                     />
                 </tr>
                 )
+            } else {
+                return null
             }
         })
     ) : (

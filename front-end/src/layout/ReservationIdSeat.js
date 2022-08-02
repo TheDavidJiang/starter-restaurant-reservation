@@ -11,7 +11,7 @@ function ReservationIdSeat(){
     const [currentReservation, setCurrentReservation] = useState(null)
 
 
-    // console.log("params: ", params.reservation_id)
+
 
 
 
@@ -25,48 +25,30 @@ function ReservationIdSeat(){
             }
         }
         getReserve()
-    }, [])
+    }, [params.reservation_id])
 
 
-    // console.log("current rezz", currentReservation)
-// let tableCapacities = {}
 
     useEffect(()=>{
+        const ac = new AbortController()
         const getTables = async () =>{
             try{
-                const getAllTables = await listTables(params.reservation_id)
-                // console.log("getAllTables: ", getAllTables)
-                // getAllTables.map((eachTable)=>{
-                //     tableCapacities[eachTable.table_id] = eachTable.capacity
-                // })
-                // console.log("tableCapacities", tableCapacities)
+                const getAllTables = await listTables(params.reservation_id, ac.signal)
                 setAllTables(getAllTables)
             }catch(e){
                 console.log(e)
             }
         }
         getTables()
-    }, [])
+    }, [params.reservation_id])
 
-
-    // console.log("reservationID", params.reservation_id)
-    // console.log("tableId", tableId)
 
     const handleSubmit = async (event) =>{
-        event.preventDefault()
-        const abortController = new AbortController()
-       
+        event.preventDefault()       
         try {
-            //need to pass in parameters: reservationId
-            // console.log("submit's table id", tableId)
-            // console.log("reservationID", params.reservation_id)
-            const response = await statusUpdate(params.reservation_id, tableId)
-            
-            console.log("response: ", response)
+            await statusUpdate(params.reservation_id, tableId)
             setTableId(null)
             history.push("/")
-
-            console.log("response", response)
         } catch (e) {
             console.log(e)
         }
@@ -74,7 +56,6 @@ function ReservationIdSeat(){
     }
 
     const changeHandler = async (event) => {
-        // console.log("This is the value: ", event.target.value)
         setTableId(event.target.value)
     }
 
@@ -87,7 +68,6 @@ function ReservationIdSeat(){
                     Table Number:
                 </label>
                 <select name="table_id" id="table_id" size="1" required  onChange={changeHandler}>
-                    {/* <option value="">{table.table_name} - {table.capacity}</option> */}
                     <option>Choose a table</option>
                     {allTables.map((eachTable)=>{
                         
