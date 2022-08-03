@@ -5,10 +5,17 @@ https://restaurant-res-front.herokuapp.com/
 
 
 # Screenshots of the API
-![Dashboard](/front-end/src/images/Dashboard.png?raw=true "Dashboard")
-![CreateReservation](/front-end/src/images/CreateReservation.PNG)
-![CreateTable](/front-end/src/images/CreateTable.PNG)
-![SearchingByPhone](/front-end/src/images/Search.PNG)
+### Dashboard
+![Dashboard](/front-end/src/images/Dashboard.PNG?raw=true "Dashboard")
+
+### Creating a reservation
+![CreateReservation](/front-end/src/images/CreateReservation.PNG "CreateReservation")
+
+### Creating a table
+![CreateTable](/front-end/src/images/CreateTable.PNG "CreateTable")
+
+### Searching By Phone
+![SearchingByPhone](/front-end/src/images/Search.PNG "SearchingByPhone")
 
 # Summary of what the application does, try to frame this from the standpoint of what the user does or how the application benefits the user
 This application is designed to allow restaurant staff members to manage customer reservations.
