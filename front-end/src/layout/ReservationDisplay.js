@@ -9,15 +9,15 @@ export default function ReservationDisplay({ reservations = []}){
             if (reservation.status !== "finished"){
                 return (
                     <tr key={reservation.reservation_id}>
-                    <td>{reservation.reservation_id}</td>
-                    <td>{reservation.first_name}</td>
-                    <td>{reservation.last_name}</td>
-                    <td>{reservation.mobile_number}</td>
-                    <td>{reservation.reservation_date}</td>
-                    <td>{reservation.reservation_time}</td>
-                    <td>{reservation.people}</td>
+                    <td className = "align-middle res-td">{reservation.reservation_id}</td>
+                    <td className = "align-middle res-td">{reservation.first_name}</td>
+                    <td className = "align-middle res-td">{reservation.last_name}</td>
+                    <td className = "align-middle res-td">{reservation.mobile_number}</td>
+                    <td className = "align-middle res-td">{reservation.reservation_date}</td>
+                    <td className = "align-middle res-td">{reservation.reservation_time}</td>
+                    <td className = "align-middle res-td">{reservation.people}</td>
                     
-                    <td data-reservation-id-status={reservation.reservation_id}>{reservation.status}</td>
+                    <td className = "align-middle" data-reservation-id-status={reservation.reservation_id}>{reservation.status}</td>
                     <ReservationButtons 
                         status={reservation.status}
                         reservation_id={reservation.reservation_id}
@@ -37,8 +37,8 @@ export default function ReservationDisplay({ reservations = []}){
 
     return (
         <div className="table-responsive">
-            <table className="table no-wrap">
-                <thead>
+            <table className="table no-wrap table-striped">
+                <thead className="thead-dark">
                 <tr>
                     <th className="border-top-0">#</th>
                     <th className="border-top-0">FIRST NAME</th>
@@ -48,6 +48,7 @@ export default function ReservationDisplay({ reservations = []}){
                     <th className="border-top-0">TIME</th>
                     <th className="border-top-0">PEOPLE</th>
                     <th className="border-top-0">STATUS</th>
+                    <th className="border-top-0" colSpan = "3">ACTION</th>
                 </tr>
                 </thead>
                 <tbody>{rows}</tbody>

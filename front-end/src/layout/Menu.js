@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { Link, useHistory } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 /**
  * Defines the menu for this application.
  *
@@ -7,19 +7,19 @@ import { Link, useHistory } from "react-router-dom";
  */
 
 function Menu() {
-  const history = useHistory();
-  let [number, setNumber] = useState("");
+  // const history = useHistory();
+  // let [number, setNumber] = useState("");
 
-  const handleChange = (event) => {
-    setNumber(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setNumber(event.target.value);
+  // };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (number) {
-      history.push(`search?mobile_number=${number}`);
-    }
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   if (number) {
+  //     history.push(`search?mobile_number=${number}`);
+  //   }
+  // };
   return (
     <nav className="navbar navbar-dark main-navbar navbar-expand-md shadow fixed-top ">
       <a className="navbar-brand logo white-text" href="/">
@@ -54,8 +54,15 @@ function Menu() {
               &nbsp;New Table
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link green-text" to="/search">
+              <span className="oi oi-magnifying-glass" />
+              &nbsp;Search by Phone
+            </Link>
+          </li>
+
         </ul>
-        <form className="form-inline">
+        {/* <form className="form-inline">
           <input
             className="form-control mr-2"
             type="search"
@@ -68,7 +75,7 @@ function Menu() {
           <button className="btn btn-light my-sm-0" onClick={handleSubmit}>
             Search
           </button>
-        </form>
+        </form> */}
       </div>
     </nav>
     // <nav className="navbar navbar-dark align-items-start p-0">

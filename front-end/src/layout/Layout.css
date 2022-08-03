@@ -6,7 +6,7 @@
 
 .navbar.main-navbar {
   min-width: 200px;
-  background-color: #415280;
+  background-color: #000;
   /* background-color: #FFDC82; */
   /* background-color: #e6c8c6; cherubic hex code  */
 }
@@ -15,19 +15,19 @@ body {
   overflow-x: hidden;
   /* color: aliceblue; */
   background-size: 400px;
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
+  font-family: 'calibri', sans-serif;
 }
 
 .header-logo {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
-  font-size: 100px;
-  text-align: center;
+  font-size: 48px;
+  text-align: left;
   color: #e7e7e7;
-  line-height: 50%;
-  margin-bottom: 50px;
-  margin-top: 120px;
-  padding-top: 28px;
+  margin-top: 55px;
+  padding:1em;
+  height:150px;
   text-shadow: 0 .5rem 1rem rgba(0, 0, 0, .40);
 }
 
@@ -36,14 +36,13 @@ body {
 }
 
 html {
+  padding:0;
   overflow-x: hidden;
+  /* background:rgb(242, 244, 245) */
 }
 
 .card-main {
-  background-color: #6495ED;
-  border-radius: 1.25rem;
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .30);
-  max-width: 600px;
+  background:#fff;
 }
 
 .card-text {
@@ -80,7 +79,9 @@ html {
   background-color: #b58900;
   border: #b58900;
 } */
-
+.btn-res{
+  padding:5px;
+}
 .btn-secondary {
   background-color: #ffdc82;
   border: #ffdc82;
@@ -106,6 +107,13 @@ html {
   background-color: #1f424b;
 }
 
+.header{
+  background: rgb(252,252,252);
+  background: linear-gradient(90deg, rgba(252,252,252,1) 0%, rgba(142,168,221,1) 0%, rgba(70,108,186,1) 0%, rgba(19,73,185,1) 100%);
+  padding:0;
+  margin:0;
+}
+
 /* .btn-secondary {
   background-color: #839496;
 } */
@@ -127,7 +135,45 @@ html {
   border: none;
   color: #fff;
 }
+.navbar 
+{
+  margin:0;
+}
+.containerMax {
 
+  padding:0;
+  width: 100%
+}
+
+.logo{
+  padding-left:1em;
+}
+
+.no-padding{
+  padding:0;
+}
+
+.table-container{
+  padding:0;
+
+}
+.table-avail{
+  background:rgb(242, 244, 245)
+}
+.res-td
+{
+  padding:10px;
+}
+.thead-dark
+{
+  /* background:rgb(49, 47, 47); */
+  background:rgba(19,73,185,1) 100%;
+  color:#fff;
+}
+.bold{
+  font-weight:800;
+  font-family: 'calibri', sans-serif
+}
 @media all and (min-width: 950px) {
   .logo {
       margin-right: 200px;

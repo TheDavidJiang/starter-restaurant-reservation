@@ -57,13 +57,15 @@ function Dashboard({ date }) {
 
   return (
     <>
-    
-      <div className="padded col-lg-7 col-md-5 col-sm-12 col-xs-6 align-self-start m-3 card-main">
+    <div className = "container">
+      <div className = "row g-1">
+      {/* <div className="padded col-lg-7 col-md-5 col-sm-12 col-xs-6 card-main"> */}
+      <div className="padded col-7 card-main min-vh-100 ">
         <div className="text-center">
           <div>
             <div className="row p-0 justify-content-center">
               <div className="col-auto p-1">
-                <h2>Reservations</h2>
+                <h2 className = "bold">Reservations</h2>
               </div>
               <div className="col-auto plus-button p-1">
                 <Link className="nav-link " to="/reservations/new">
@@ -88,25 +90,28 @@ function Dashboard({ date }) {
           </div>
         </div>
       </div>
-
-      <div className="padded col-lg-3 col-md-5 col-sm-12 col-xs-6 align-self-start m-3 card-main">
-        <div className="text-center">
-          <div className="row justify-content-center">
-            <div className="col-auto p-1">
-              <h2>Tables</h2>
+      
+      {/* <div className="padded col-lg-4 col-md-5 col-sm-12 col-xs-6 card-main"> */}
+      <div className="padded col-5 card-main min-vh-100 table-avail ">
+          <div className="text-center ">
+            <div className="row justify-content-center">
+              <div className="col-auto p-1">
+                <h2 className = "bold">Tables</h2>
+              </div>
+              <div className="col-auto plus-button p-1">
+                <Link className="nav-link" to="/tables/new">
+                  <span className="oi oi-plus" />
+                  &nbsp;
+                </Link>
+              </div>
             </div>
-            <div className="col-auto plus-button p-1">
-              <Link className="nav-link" to="/tables/new">
-                <span className="oi oi-plus" />
-                &nbsp;
-              </Link>
-            </div>
+            
+            <TableDisplay tables={tables} onFinish={onFinish} />
+            <ErrorAlert error={tablesError} />
           </div>
-          
-          <TableDisplay tables={tables} onFinish={onFinish} />
-          <ErrorAlert error={tablesError} />
         </div>
       </div>
+    </div>
     </>
   );
 }
