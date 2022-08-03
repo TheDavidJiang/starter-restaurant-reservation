@@ -31,7 +31,7 @@ export default function ReservationDisplay({ reservations = []}){
         })
     ) : (
         <tr>
-            <td colSpan="6">No reservations found.</td>
+            <td colSpan="12">No reservations found.</td>
         </tr>
     );
 
