@@ -1,14 +1,14 @@
-# H1 Restaurant Reservation System
+# Restaurant Reservation System
 
-# Live Link
+# Deployed Link
 https://restaurant-res-front.herokuapp.com/
 
 
 # Screenshots of the API
-![Dashboard] (/images/Dashboard.png)
-![CreateReservation] (/images/CreateReservation.PNG)
-![CreateTable] (/images/CreateTable.PNG)
-![SearchingByPhone] (/images/Search.PNG)
+![Dashboard] (/front-end/src/images/Dashboard.png)
+![CreateReservation] (/front-end/src/images/CreateReservation.PNG)
+![CreateTable] (/front-end/src/images/CreateTable.PNG)
+![SearchingByPhone] (/front-end/src/images/Search.PNG)
 
 # Summary of what the application does, try to frame this from the standpoint of what the user does or how the application benefits the user
 This application is designed to allow restaurant staff members to manage customer reservations.
