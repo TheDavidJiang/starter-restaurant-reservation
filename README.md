@@ -17,7 +17,7 @@ https://restaurant-res-front.herokuapp.com/
 ### Searching By Phone
 ![SearchingByPhone](/front-end/src/images/Search.PNG "SearchingByPhone")
 
-# Summary of what the application does, try to frame this from the standpoint of what the user does or how the application benefits the user
+# Description
 This application is designed to allow restaurant staff members to manage customer reservations.
 This application can:
 - Create, edit, and display all reservations
@@ -27,7 +27,7 @@ This application can:
 - Free up an occupied table
 - Search for a reservation by phone number
 
-# Technologies used
+# Tech
 - Node.js
 - Express
 - React
