@@ -119,7 +119,7 @@ function reservationTimeIsValid(req, res, next){
   else if(reservation_time < "10:30"){
     return next({ status: 400, message: "We're not open yet."})
   }
-  else if(reservation_time > "19:30"){
+  else if(reservation_time > "21:30"){
     return next({ status: 400, message: "We're closing soon. Please choose an earlier time or come back another day!"})
   }
   next()

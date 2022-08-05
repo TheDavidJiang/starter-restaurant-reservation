@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { editReservation, getReservation } from "../../utils/api"
 import { formatAsDate } from "../../utils/date-time"
+import ErrorAlert from "../ErrorAlert"
 import ReservationForm from "../ReservationForm"
 
 //parent is Route.js
@@ -45,7 +46,7 @@ export default function EditDisplay(){
        
 
 
-   const [errors, setErrors] = useState(null)
+   const [errors, setErrors] = useState([])
 
     const handleSubmit = async (event) =>{
         event.preventDefault()
@@ -68,8 +69,21 @@ export default function EditDisplay(){
         })
     }
 
+
     return (
         <>
+        {errors.length > 0 && (
+            <div className = "alert alert-danger">
+                <ul>
+                {errors.map((error)=>{
+                    return <li key={errors[errors.length-1]}>{error.message} </li>
+                        
+                })}
+                </ul>
+            </div>
+        )}
+
+
         <h2>
             Edit your Reservation
          </h2>
@@ -78,6 +92,7 @@ export default function EditDisplay(){
             handleSubmit={handleSubmit}
             reservationForm={formState}
         />
+        
         </>
        
     )

@@ -55,7 +55,6 @@ function AddReservation(){
     //     const yyyy = today.getFullYear();
     //     return yyyy + "-" + mm + "-" + dd;
     // }
-    
 
     return (
         <>
@@ -63,7 +62,7 @@ function AddReservation(){
             <div className = "alert alert-danger">
                 <ul>
                 {errors.map((error)=>{
-                    return <li>{error.message} </li>
+                    return <li key={errors[errors.length-1]}>{error.message} </li>
                         
                 })}
                 </ul>
