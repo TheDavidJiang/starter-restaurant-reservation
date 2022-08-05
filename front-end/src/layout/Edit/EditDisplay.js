@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { editReservation, getReservation } from "../../utils/api"
 import { formatAsDate } from "../../utils/date-time"
-import ErrorAlert from "../ErrorAlert"
 import ReservationForm from "../ReservationForm"
 
 //parent is Route.js
